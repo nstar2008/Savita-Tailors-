@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Savita Tailor — Rohtak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --ivory: #EFE6D8;
+    --card: #F8F2E7;
+    --ink: #2B2420;
+    --ink-soft: #5A5044;
+    --maroon: #8C2F39;
+    --maroon-deep: #6E232B;
+    --mustard: #C98A2B;
+    --teal: #2F5D62;
+    --stitch: #B9522C;
+    --radius: 3px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 { font-family: 'Fraunces', serif; margin: 0; }
+
+  a { color: inherit; }
+
+  img, svg { display:block; max-width:100%; }
+
+  .wrap{
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- stitched running-line divider ---------- */
+  .stitch{
+    width:100%;
+    height: 14px;
+  }
+  .stitch svg { width:100%; height:100%; }
+
+  /* ---------- header ---------- */
+  header{
+    position: sticky;
+    top:0;
+    z-index: 20;
+    background: rgba(239,230,216,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(43,36,32,0.12);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 16px 28px;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .brandmark{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .brandmark svg{ width: 26px; height:26px; flex-shrink:0; }
+
+  .nav-cta{
+    font-family:'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 9px 18px;
+    background: var(--maroon);
+    color: var(--ivory);
+    border-radius: var(--radius);
+    text-decoration:none;
+    white-space:nowrap;
+    transition: background 0.2s ease;
+  }
+  .nav-cta:hover{ background: var(--maroon-deep); }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding: 76px 0 56px;
+    position: relative;
+    overflow:hidden;
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 40px;
+    align-items:center;
+  }
+  .eyebrow-line{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    color: var(--maroon);
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+  .eyebrow-line svg{ width:20px; height:20px; }
+
+  .hero h1{
+    font-size: clamp(2.6rem, 5.4vw, 4.1rem);
+    font-weight: 600;
+    line-height: 1.03;
+    color: var(--ink);
+  }
+  .hero h1 em{
+    font-style: italic;
+    font-weight: 500;
+    color: var(--maroon);
+  }
+
+  .hero p.lede{
+    margin-top: 20px;
+    max-width: 46ch;
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+  }
+
+  .hero-actions{
+    margin-top: 30px;
+    display:flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding: 13px 24px;
+    border-radius: var(--radius);
+    text-decoration:none;
+    font-weight: 600;
+    font-size: 0.98rem;
+    transition: transform 0.15s ease, background 0.2s ease;
+  }
+  .btn-primary{ background: var(--maroon); color: var(--ivory); }
+  .btn-primary:hover{ background: var(--maroon-deep); transform: translateY(-1px); }
+  .btn-ghost{
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+  }
+  .btn-ghost:hover{ background: var(--ink); color: var(--ivory); }
+
+  .hero-visual{
+    position:relative;
+  }
+  .hero-visual svg{ width:100%; height:auto; }
+
+  .hero.reveal{
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.8s ease forwards 0.15s;
+  }
+  @keyframes rise{ to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce){
+    .hero.reveal{ animation:none; opacity:1; transform:none; }
+  }
+
+  /* ---------- about strip ---------- */
+  .about{
+    padding: 50px 0 10px;
+  }
+  .about p{
+    max-width: 62ch;
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+  }
+  .about strong{ color: var(--ink); font-weight:600; }
+
+  /* ---------- services ---------- */
+  .services{ padding: 60px 0 40px; }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  .section-head h2{
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-weight: 600;
+  }
+  .section-head span{
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    font-style: italic;
+    font-family:'Fraunces', serif;
+  }
+
+  .service-row{
+    display:grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 22px;
+    align-items:center;
+    padding: 26px 0;
+    border-bottom: 1px solid rgba(43,36,32,0.14);
+  }
+  .service-row:first-of-type{ border-top: 1px solid rgba(43,36,32,0.14); }
+  .service-icon{
+    width:56px; height:56px;
+    border-radius: 50%;
+    background: var(--card);
+    display:flex; align-items:center; justify-content:center;
+    border: 1px solid rgba(43,36,32,0.12);
+  }
+  .service-icon svg{ width:28px; height:28px; }
+  .service-text h3{
+    font-size: 1.28rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .service-text p{
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    max-width: 52ch;
+  }
+  .service-tag{
+    font-size: 0.82rem;
+    color: var(--teal);
+    font-weight: 600;
+    white-space: nowrap;
+    border: 1px solid var(--teal);
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+  @media (max-width: 620px){
+    .service-row{ grid-template-columns: 48px 1fr; }
+    .service-tag{ grid-column: 1 / -1; justify-self:start; }
+  }
+
+  /* ---------- location ---------- */
+  .location{
+    padding: 60px 0 70px;
+  }
+  .location-card{
+    background: var(--maroon);
+    color: var(--ivory);
+    border-radius: var(--radius);
+    padding: 44px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items:center;
+  }
+  .location-card h2{
+    color: var(--ivory);
+    font-size: clamp(1.6rem, 2.8vw, 2rem);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .location-card address{
+    font-style: normal;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    opacity: 0.94;
+  }
+  .location-card .btn-primary{
+    margin-top: 22px;
+    background: var(--ivory);
+    color: var(--maroon-deep);
+  }
+  .location-card .btn-primary:hover{ background:#fff; }
+  .map-graphic svg{ width:100%; height:auto; }
+
+  @media (max-width: 760px){
+    .location-card{ grid-template-columns: 1fr; padding: 32px 24px; }
+    .map-graphic{ order:-1; max-width: 220px; margin: 0 auto; }
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding: 34px 0 44px;
+    text-align:center;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+  }
+  footer .brandmark{ justify-content:center; margin-bottom: 6px; color: var(--ink); }
+
+  @media (max-width: 760px){
+    .hero-inner{ grid-template-columns: 1fr; }
+    .hero-visual{ order:-1; max-width: 260px; margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brandmark">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 10 C8 10 20 24 32 10" stroke="#8C2F39" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="32" cy="10" r="2.4" fill="#C98A2B"/>
+        <circle cx="8" cy="10" r="2.4" fill="#C98A2B"/>
+        <path d="M14 28 C18 24 22 24 26 28" stroke="#2F5D62" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Savita Tailor
+    </div>
+    <a class="nav-cta" href="#location">Find the shop</a>
+  </div>
+</header>
+
+<section class="hero reveal">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow-line">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h16M14 6l6 6-6 6" stroke="#8C2F39" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Chotu Ram Nagar, Rohtak
+      </div>
+      <h1>Stitched by hand,<br><em>fitted</em> to you.</h1>
+      <p class="lede">Savita Tailor mends, alters and stitches clothing for girls and ladies — blouse fittings, quick repairs, and made-to-measure pieces, all from a neighbourhood shop near Sukhpura Chowk.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#services">See what I stitch</a>
+        <a class="btn btn-ghost" href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwjAhrTk1deWAxUAAAAAHQAAAAAQBg..i&pvq=Cg0vZy8xMXRjemttN2xjIhQKDnNhdml0YSB0YWlsb3JzEAIYAw&lqi=Cg5zYXZpdGEgdGFpbG9yc0jLvObor7mAgAhaGBAAEAEYABgBIg5zYXZpdGEgdGFpbG9yc5IBBnRhaWxvcg&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=in&sa=X&ftid=0x390d85df0d7eac3d:0xdf86d19caf8879e0" target="_blank" rel="noopener">Get directions</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="160" cy="160" r="150" fill="#F8F2E7" stroke="#8C2F39" stroke-width="1.5" stroke-dasharray="2 8"/>
+        <path d="M100 90 C100 90 160 60 220 90 C240 100 240 140 220 150 C200 160 180 150 180 150 L180 250 C180 260 170 265 160 265 C150 265 140 260 140 250 L140 150 C140 150 120 160 100 150 C80 140 80 100 100 90 Z" fill="none" stroke="#2B2420" stroke-width="2"/>
+        <path d="M100 90 C100 90 160 60 220 90" stroke="#C98A2B" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"/>
+        <path d="M150 150 v100" stroke="#2F5D62" stroke-width="1.5" stroke-dasharray="1 6"/>
+        <path d="M170 150 v100" stroke="#2F5D62" stroke-width="1.5" stroke-dasharray="1 6"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="stitch">
+  <svg viewBox="0 0 1000 14" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="7" x2="1000" y2="7" stroke="#8C2F39" stroke-width="2" stroke-dasharray="10 8" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<section class="about">
+  <div class="wrap">
+    <p><strong>Only for girls and ladies</strong> — every fitting, repair, and new piece stitched here is made with that in mind. If it's your saree blouse that needs a new fit, a kurti with a torn seam, or a fresh suit stitched to your own measurements, it's the kind of work that happens at this table every day.</p>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What I stitch</h2>
+      <span>for girls & ladies only</span>
+    </div>
+
+    <div class="service-row">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 4 L4 8 L7 11 L7 20 L17 20 L17 11 L20 8 L16 4 C16 6.2 14.2 8 12 8 C9.8 8 8 6.2 8 4 Z" stroke="#8C2F39" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="service-text">
+        <h3>Blouse alterations</h3>
+        <p>Sleeve and neckline changes, fit adjustments, hooks and padding — so your saree blouse sits right.</p>
+      </div>
+      <div class="service-tag">Alterations</div>
+    </div>
+
+    <div class="service-row">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12c4-6 12-6 16 0M6 12c2 4 10 4 12 0" stroke="#2F5D62" stroke-width="1.6" stroke-linecap="round"/><circle cx="18" cy="7" r="1.4" fill="#2F5D62"/></svg>
+      </div>
+      <div class="service-text">
+        <h3>Clothing repairs</h3>
+        <p>Torn seams, loose hems, worn zips and missing buttons — mended so they hold.</p>
+      </div>
+      <div class="service-tag">Repairs</div>
+    </div>
+
+    <div class="service-row">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="6" width="6" height="14" rx="2" stroke="#C98A2B" stroke-width="1.6"/><path d="M10 8h9a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9" stroke="#C98A2B" stroke-width="1.6"/></svg>
+      </div>
+      <div class="service-text">
+        <h3>New clothes, made to measure</h3>
+        <p>Suits, kurtis and dresses stitched from scratch to your own measurements — for girls and ladies only.</p>
+      </div>
+      <div class="service-tag">New stitching</div>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="location">
+  <div class="wrap">
+    <div class="location-card">
+      <div>
+        <h2>Visit the shop</h2>
+        <address>
+          Savita Tailor<br>
+          Sir, Gali Number 1, near Sukhpura Chowk<br>
+          Chotu Ram Nagar, Rohtak, Haryana 124001
+        </address>
+        <a class="btn btn-primary" href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwjAhrTk1deWAxUAAAAAHQAAAAAQBg..i&pvq=Cg0vZy8xMXRjemttN2xjIhQKDnNhdml0YSB0YWlsb3JzEAIYAw&lqi=Cg5zYXZpdGEgdGFpbG9yc0jLvObor7mAgAhaGBAAEAEYABgBIg5zYXZpdGEgdGFpbG9yc5IBBnRhaWxvcg&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=in&sa=X&ftid=0x390d85df0d7eac3d:0xdf86d19caf8879e0" target="_blank" rel="noopener">Open in Google Maps</a>
+      </div>
+      <div class="map-graphic">
+        <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="110" stroke="#EFE6D8" stroke-width="1.5" stroke-dasharray="3 7"/>
+          <path d="M120 60 C95 60 78 80 78 104 C78 138 120 180 120 180 C120 180 162 138 162 104 C162 80 145 60 120 60 Z" fill="#EFE6D8"/>
+          <circle cx="120" cy="104" r="16" fill="#8C2F39"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="brandmark">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 10 C8 10 20 24 32 10" stroke="#8C2F39" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="32" cy="10" r="2.4" fill="#C98A2B"/>
+      <circle cx="8" cy="10" r="2.4" fill="#C98A2B"/>
+    </svg>
+    Savita Tailor
+  </div>
+  Chotu Ram Nagar, Rohtak, Haryana 124001
+</footer>
+
+</body>
+</html>
